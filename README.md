@@ -6,7 +6,8 @@
 
 This project automates the collection of NHL all-time regular season skater statistics.
 
-The scraper reverse-engineers the NHL website's (https://www.nhl.com/stats/skaters) JSON endpoints to retrieve player statistics, automatically handles pagination and rate limiting, and exports the complete dataset to a CSV file for further analysis.
+The scraper reverse-engineers the NHL website's JSON endpoints to retrieve player statistics, automatically handles pagination and rate limiting, and exports the complete dataset to CSV files for further analysis.
+The source of data is the [official NHL website](https://www.nhl.com/stats/skaters).
 
 
 ### Technologies
@@ -16,32 +17,49 @@ The scraper reverse-engineers the NHL website's (https://www.nhl.com/stats/skate
 
 ### Output
 
-data/nhl_skaters.csv
+The scraper generates:
+
+`data/skaters_bios.csv`
+`data/skaters_summary.csv`
 
 Each row represents one NHL player and includes statistics such as:
 
-Player name
-Team
-Position
-Games Played
-Goals
-Assists
-Points
-Plus/Minus
-Penalty Minutes
-Time on Ice
+- player name
+- position
+- games played
+- goals
+- assists
+- points
+
 and many additional NHL statistics
 
-### Installation
-git clone https://github.com/natashk/NHL.git
-cd NHL
+### Project Structure
 
-pip install -r requirements.txt
+    NHL/
+    │
+    ├── data/
+    │   ├── skaters_bios.csv
+    │   └── skaters_summary.csv
+    ├── data_scraper/
+    │   └── skaters_scraper.py
+    ├── README.md
+    └── requirements.txt
+
+### Setup
+
+1. Clone the repository
+```bash
+   git clone https://github.com/natashk/NHL.git
+   cd NHL
+```
+2. Install dependencies
+```bash
+   pip install -r requirements.txt
+```
 
 ### Usage
 
-Run the scraper:
-
-python skaters_scraper.py
-
-The CSV file will be created in the *data* directory.
+```bash
+python data_scraper/skaters_scraper.py
+```
+Output will be saved to `data/skaters_bios.csv` and `data/skaters_summary.csv`.
