@@ -1,0 +1,51 @@
+id,country3Code,countryCode,countryName,hasPlayerStats,iocCode,isActive,nationalityName
+AUS,AUS,AU,Australia,1,AUS,1,Australian
+AUT,AUT,AT,Austria,1,AUT,1,Austrian
+BHS,BHS,BS,Bahamas,1,BAH,1,Bahamian
+BLR,BLR,BY,Belarus,1,BLR,1,Belarussian
+BEL,BEL,BE,Belgium,1,BEL,1,Belgian
+BRA,BRA,BR,Brazil,1,BRA,1,Brazilian
+CAN,CAN,CA,Canada,1,CAN,1,Canadian
+CHN,CHN,CN,China,0,CHN,1,Chinese
+HRV,HRV,HR,Croatia (Hrvatska),1,CRO,1,Croat
+CZE,CZE,CZ,Czechia,1,CZE,1,Czech
+DNK,DNK,DK,Denmark,1,DEN,1,Danish
+EST,EST,EE,Estonia,1,EST,1,Estonian
+FIN,FIN,FI,Finland,1,FIN,1,Finnish
+FRA,FRA,FR,France,1,FRA,1,French
+DEU,DEU,DE,Germany,1,GER,1,German
+GRC,GRC,GR,Greece,1,GRE,1,Greek
+GUY,GUY,GY,Guyana,1,GUY,1,Guyanese
+HTI,HTI,HT,Haiti,1,HAI,1,Haitian
+HUN,HUN,HU,Hungary,1,HUN,1,Hungarian
+IRL,IRL,IE,Ireland,1,IRL,1,Irish
+ISR,ISR,IL,Israel,0,ISR,1,Israeli
+ITA,ITA,IT,Italy,1,ITA,1,Italian
+JAM,JAM,JM,Jamaica,1,JAM,1,Jamaican
+JPN,JPN,JP,Japan,1,JPN,1,Japanese
+KAZ,KAZ,KZ,Kazakhstan,1,KAZ,1,Kazahkstanian
+KOR,KOR,KR,Korea (South),1,KOR,1,South Korean
+LVA,LVA,LV,Latvia,1,LAT,1,Latvian
+LBN,LBN,LB,Lebanon,1,LIB,1,Lebanese
+LTU,LTU,LT,Lithuania,1,LTU,1,Lithuanian
+MEX,MEX,MX,Mexico,0,MEX,1,Mexican
+MDA,MDA,MD,Moldova,0,MDA,1,Moldovan
+NLD,NLD,NL,Netherlands,1,NED,1,Netherlander
+NGA,NGA,NG,Nigeria,1,NGR,1,Nigerian
+NOR,NOR,NO,Norway,1,NOR,1,Norwegian
+PRY,PRY,PY,Paraguay,1,PAR,1,Paraguayan
+POL,POL,PL,Poland,1,POL,1,Polish
+ROU,ROU,RO,Romania,1,ROU,1,Romanian
+RUS,RUS,RU,Russia,1,RUS,1,Russian
+SRB,SRB,RS,Serbia,1,SRB,1,Serbian
+SVK,SVK,SK,Slovakia,1,SVK,1,Slovakian
+SVN,SVN,SI,Slovenia,1,SLO,1,Slovenian
+ZAF,ZAF,ZA,South Africa,1,RSA,1,South African
+SWE,SWE,SE,Sweden,1,SWE,1,Swedish
+CHE,CHE,CH,Switzerland,1,SUI,1,Swiss
+THA,THA,TH,Thailand,1,THA,1,Thailanese
+UKR,UKR,UA,Ukraine,1,UKR,1,Ukrainian
+GBR,GBR,GB,United Kingdom,1,GBR,1,British
+USA,USA,US,United States,1,USA,1,American
+VEN,VEN,VE,Venezuela,1,VEN,1,Venezuelan
+YUG,YUG,YU,Yugoslavia,0,YUG,0,Yugoslavian
