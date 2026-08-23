@@ -12,6 +12,7 @@ def get_seasons():
     return data["data"]
 
 def get_skaters(report_type, season_id):
+    page_size = 100
     all_players = []
     page = 0
     have_data = True
@@ -40,46 +41,55 @@ def get_skaters(report_type, season_id):
         index=False
     )
 
-parser = argparse.ArgumentParser()
-parser.add_argument(
-    "--report-type",
-    choices=["summary", "bios"],
-    default="summary",
-    help="Type of skater data to download."
-)
+def parse_arguments():
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--report-type",
+        choices=["summary", "bios"],
+        default="summary",
+        help="Type of skater data to download."
+    )
 
-parser.add_argument(
-    "--start-season",
-    type=int,
-    help="First season to download (e.g. 20182019). Defaults to earliest available."
-)
+    parser.add_argument(
+        "--start-season",
+        type=int,
+        help="First season to download (e.g. 20182019). Defaults to earliest available."
+    )
 
-parser.add_argument(
-    "--end-season",
-    type=int,
-    help="Last season to download (e.g. 20242025). Defaults to latest available."
-)
+    parser.add_argument(
+        "--end-season",
+        type=int,
+        help="Last season to download (e.g. 20242025). Defaults to latest available."
+    )
 
-args = parser.parse_args()
+    args = parser.parse_args()
+    return args
 
-seasons = get_seasons()
-seasons = sorted(seasons, key=lambda s: s["id"])
 
-if args.start_season:
-    seasons = [s for s in seasons if s["id"] >= args.start_season]
 
-if args.end_season:
-    seasons = [s for s in seasons if s["id"] <= args.end_season]
+def main():
+    args = parse_arguments()
 
-season_ids = [s["id"] for s in seasons]
+    seasons = get_seasons()
+    seasons = sorted(seasons, key=lambda s: s["id"])
 
-print(f"Scraping {len(season_ids)} seasons: {season_ids}")
+    if args.start_season:
+        seasons = [s for s in seasons if s["id"] >= args.start_season]
 
-page_size = 100
+    if args.end_season:
+        seasons = [s for s in seasons if s["id"] <= args.end_season]
 
-i = 1
-for season in seasons:
-    season_id = season["id"]
-    print(f"Scraping {i}th season: {season_id}")
-    get_skaters(args.report_type, season_id)
-    i += 1
+    season_ids = [s["id"] for s in seasons]
+
+    print(f"Scraping {len(season_ids)} seasons: {season_ids}")
+
+    i = 1
+    for season in seasons:
+        season_id = season["id"]
+        print(f"Scraping {i}th season: {season_id}")
+        get_skaters(args.report_type, season_id)
+        i += 1
+
+
+if __name__ == "__main__":
+    main()
