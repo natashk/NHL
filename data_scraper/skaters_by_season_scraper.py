@@ -11,6 +11,7 @@ def get_seasons():
     data = response.json()
     return data["data"]
 
+
 def get_skaters(report_type, season_id):
     page_size = 100
     all_players = []
@@ -19,7 +20,13 @@ def get_skaters(report_type, season_id):
 
     while have_data:
         while True:
-            url = f"https://api.nhle.com/stats/rest/en/skater/{report_type}?isAggregate=false&isGame=false&start={page * page_size}&limit={page_size}&cayenneExp=gameTypeId=2%20and%20seasonId%3C={season_id}%20and%20seasonId%3E={season_id}"
+            url = (
+                f"https://api.nhle.com/stats/rest/en/skater/{report_type}?isAggregate=false&isGame=false&"
+                f"sort=%5B%7B%22property%22:%22playerId%22,%22direction%22:%22ASC%22%7D%5D&"
+                f"start={page * page_size}&limit={page_size}&"
+                f"cayenneExp=gameTypeId=2%20and%20seasonId%3C={season_id}%20and%20seasonId%3E={season_id}"
+            )
+            print(url)
             response = requests.get(url)
             print(f"{report_type} page {page + 1}  -  response code: {response.status_code}")
             if response.status_code == 429:
@@ -40,6 +47,7 @@ def get_skaters(report_type, season_id):
         header=not os.path.exists(filename),  # write header only once
         index=False
     )
+
 
 def parse_arguments():
     parser = argparse.ArgumentParser()
@@ -93,3 +101,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
