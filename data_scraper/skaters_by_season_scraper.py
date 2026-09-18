@@ -12,7 +12,7 @@ def get_seasons():
     return data["data"]
 
 
-def get_skaters(report_type, season_id):
+def get_skaters(report_type, season_id, output_file):
     page_size = 100
     all_players = []
     page = 0
@@ -26,7 +26,6 @@ def get_skaters(report_type, season_id):
                 f"start={page * page_size}&limit={page_size}&"
                 f"cayenneExp=gameTypeId=2%20and%20seasonId%3C={season_id}%20and%20seasonId%3E={season_id}"
             )
-            print(url)
             response = requests.get(url)
             print(f"{report_type} page {page + 1}  -  response code: {response.status_code}")
             if response.status_code == 429:
@@ -40,24 +39,19 @@ def get_skaters(report_type, season_id):
         page += 1
 
     df = pd.json_normalize(all_players)
-    filename = f"data/skaters_by_season_{report_type}.csv"
+    if len(df) == 0:
+        print(f"No data found for season {season_id}. Skipping...")
+        return
     df.to_csv(
-        filename,
+        output_file,
         mode="a",  # append
-        header=not os.path.exists(filename),  # write header only once
+        header=not os.path.exists(output_file),  # write header only once
         index=False
     )
 
 
 def parse_arguments():
     parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "--report-type",
-        choices=["summary", "bios"],
-        default="summary",
-        help="Type of skater data to download."
-    )
-
     parser.add_argument(
         "--start-season",
         type=int,
@@ -76,11 +70,10 @@ def parse_arguments():
 
 
 def main():
-    args = parse_arguments()
-
     seasons = get_seasons()
     seasons = sorted(seasons, key=lambda s: s["id"])
 
+    args = parse_arguments()
     if args.start_season:
         seasons = [s for s in seasons if s["id"] >= args.start_season]
 
@@ -91,11 +84,13 @@ def main():
 
     print(f"Scraping {len(season_ids)} seasons: {season_ids}")
 
+    report_type = "summary"
+    filename = f"data/skaters_by_season_{report_type}.csv"
     i = 1
     for season in seasons:
         season_id = season["id"]
         print(f"Scraping {i}th season: {season_id}")
-        get_skaters(args.report_type, season_id)
+        get_skaters(report_type, season_id, filename)
         i += 1
 
 
