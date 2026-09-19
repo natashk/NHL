@@ -15,16 +15,17 @@ NHL/
 │   ├── countries.csv
 │   ├── drafts.csv
 │   ├── seasons.csv
+│   ├── skaters_bios.csv
+│   ├── skaters_by_season_summary.csv
 │   ├── state_provinces.csv
-│   ├── teams.csv
-│   ├── skaters_by_season_bios.csv
-│   └── skaters_by_season_summary.csv
+│   └── teams.csv
 │
 ├── data_analysis/
 │   ├── forward_defence.ipynb
 │   └── README.md
 │
 ├── data_scraper/
+│   ├── bios_scraper.py
 │   ├── metadata_scraper.py
 │   ├── skaters_by_season_scraper.py
 │   └── README.md

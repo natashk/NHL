@@ -3,9 +3,10 @@
 
 This project collects and prepares NHL data for historical analysis and data visualization.
 
-The project includes two Python-based scrapers:
+The project includes three Python-based scrapers:
 
-- **Skater Statistics Scraper** — collects NHL skater statistics by season.
+- **Skaters Statistics Scraper** — collects NHL skater statistics by season.
+- **Skaters Bios Scraper** — collects NHL skater bios.
 - **Metadata Scraper** — collects reference data such as countries, states and provinces, teams, seasons, and drafts.
 
 The collected data is exported to CSV files and can be used for analysis with Python, SQL, spreadsheets, or data visualization tools.
@@ -26,16 +27,17 @@ NHL/
 │   ├── countries.csv
 │   ├── drafts.csv
 │   ├── seasons.csv
+│   ├── skaters_bios.csv
+│   ├── skaters_by_season_summary.csv
 │   ├── state_provinces.csv
-│   ├── teams.csv
-│   ├── skaters_by_season_bios.csv
-│   └── skaters_by_season_summary.csv
+│   └── teams.csv
 │
 ├── data_analysis/
 │   ├── forward_defence.ipynb
 │   └── README.md
 │
 ├── data_scraper/
+│   ├── bios_scraper.py
 │   ├── metadata_scraper.py
 │   ├── skaters_by_season_scraper.py
 │   └── README.md
@@ -44,21 +46,15 @@ NHL/
 └── requirements.txt
 ```
 
-## Skater Statistics Scraper
+## Skaters Statistics Scraper
 
 ### Overview
 
-The skater statistics scraper collects NHL regular-season skater statistics by season.
+The skaters statistics scraper collects NHL regular-season skater statistics by season.
 
-The scraper reverse-engineers the NHL website's JSON endpoints to automate data collection. It supports pagination, configurable season ranges, and different report types.
+The scraper reverse-engineers the NHL website's JSON endpoints to automate data collection. It supports configurable season ranges.
 
 The collected data is saved to CSV files for further analysis.
-
-### Data Types
-
-The scraper supports two report types:
-
-#### Summary
 
 Contains season-level player performance statistics, including:
 
@@ -71,11 +67,16 @@ Contains season-level player performance statistics, including:
 - Plus/minus
 - Other statistical measures
 
-Output: ```data/skaters_summary.csv```
+### Output
 
-#### Bios
+```data/skaters_summary.csv```
 
-Contains player biographical and career information, including:
+
+## Skaters Bios Scraper
+
+### Overview
+
+The skaters bios scraper collects player biographical and career information, including:
 
 - Player name
 - Position
@@ -88,7 +89,10 @@ Contains player biographical and career information, including:
 - Weight
 - Hall of Fame status
 
-Output: ```data/skaters_bios.csv```
+### Output
+
+```data/skaters_bios.csv```
+
 
 ## Metadata Scraper
 
@@ -145,35 +149,28 @@ data/
 ### Scrape summary statistics for all available seasons
 
 ```bash
-python data_scraper/skaters_by_season_scraper.py --report-type summmary
-```
-
-or
-
-```bash
 python data_scraper/skaters_by_season_scraper.py
-```
-
-### Scrape player bios for all available seasons
-
-```bash
-python data_scraper/skaters_by_season_scraper.py --report-type bios
 ```
 
 ### Scrape a single season (for example 2024-2025):
 
 ```bash
-python data_scraper/skaters_by_season_scraper.py --report-type summary --start-season 20242025 --end-season 20242025
+python data_scraper/skaters_by_season_scraper.py --start-season 20242025 --end-season 20242025
 ```
 
 ### Scrape a range of seasons (for example, 2018-2019 through 2024-2025):
 
 ```bash
-python data_scraper/skaters_by_season_scraper.py --report-type bios --start-season 20182019 --end-season 20242025
+python data_scraper/skaters_by_season_scraper.py --start-season 20182019 --end-season 20242025
 ```
 
 If `--start-season` and `--end-season` are omitted, the scraper downloads data for all available seasons.
 
+### Scrape players bios
+
+```bash
+python data_scraper/bios_scraper.py
+```
 
 ### Scrape metadata
 
